@@ -42,11 +42,11 @@ export default function PieChart() {
   };
 
   function onChartReady(echarts) {
-    console.log('echarts is ready', echarts);
+    // console.log('echarts is ready', echarts);
   }
 
   function onChartLegendselectchanged(param, echarts) {
-    console.log(param, echarts);
+    // console.log(param, echarts);
   };
 
   return (

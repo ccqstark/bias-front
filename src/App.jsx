@@ -5,24 +5,34 @@ import {
   FieldTimeOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css'
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
 export default function App() {
+
+  // 默认显示页
+  const navigate = useNavigate()
+  const location = useLocation()
+  useEffect(() => {
+    if (location.pathname === '/') {
+      navigate("/direct")
+    }
+  })
+
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}
-             style={{
-              overflow: "auto",
-              height: "100vh",
-              position: "sticky",
-              top: 0,
-              left: 0
-            }}
+        style={{
+          overflow: "auto",
+          height: "100vh",
+          position: "sticky",
+          top: 0,
+          left: 0
+        }}
       >
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
