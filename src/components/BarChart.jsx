@@ -1,23 +1,23 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
-export default function BarChart() {
+export default function BarChart(props) {
     const option = {
         title: {
-            text: 'ECharts 入门示例'
+            text: '不同观点数量柱状图'
         },
         tooltip: {},
         legend: {
-            data: ['销量']
+            data: ['数量']
         },
         xAxis: {
-            data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+            data: ['无关', '无偏见', '中立', '有偏见']
         },
         yAxis: {},
         series: [{
-            name: '销量',
+            name: '数量',
             type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
+            data: props.topicData
         }]
     };
 

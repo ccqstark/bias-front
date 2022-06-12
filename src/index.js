@@ -3,7 +3,8 @@ import Router from './router'
 import axios from 'axios';
 
 // 配置请求基础路径
-axios.defaults.baseURL = "http://120.76.135.19:5000";
+axios.defaults.baseURL = "http://120.76.135.19:8012";
+// axios.defaults.baseURL = "http://127.0.0.1:5000";
 
 ReactDOM.render(
     <Router />,

@@ -13,7 +13,7 @@ export default function Direct() {
         <div>
             <TextForm setPredictData={setPredictData}/>
             <Divider>数据表格</Divider>
-            <DataTable predictData={predictData}/>
+            <DataTable tableData={predictData}/>
             <Divider >统计饼图</Divider>
             <PieChart predictData={predictData}/>
         </div>

@@ -26,8 +26,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       topic: "",
-      comments: ""
+      comments: "",
+      loadingState: false
     }
+  }
+
+  changeLoadingState(flag) {
+    this.setState({
+      loadingState: flag
+    })
   }
 
   formRef = React.createRef();
@@ -37,6 +44,7 @@ class App extends React.Component {
   };
 
   requestPredict = () => {
+    this.changeLoadingState(true)
     let data = {
       "topic": this.state.topic,
       "comments": this.state.comments.split("\n")
@@ -45,6 +53,7 @@ class App extends React.Component {
       .then(res => {
         // console.log(res.data);
         this.props.setPredictData(res.data)
+        this.changeLoadingState(false)
       })
   }
 
@@ -87,7 +96,8 @@ class App extends React.Component {
               }} />
           </Form.Item>
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit" onClick={() => this.requestPredict()}>
+            <Button type="primary" htmlType="submit" onClick={() => this.requestPredict()}
+              loading={this.state.loadingState}>
               提交数据
             </Button>
             <Button htmlType="button" onClick={this.onReset}

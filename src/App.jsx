@@ -3,6 +3,8 @@ import {
   MenuUnfoldOutlined,
   ExperimentOutlined,
   FieldTimeOutlined,
+  DotChartOutlined,
+  HeartOutlined
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import React, { useState, useEffect } from 'react';
@@ -45,6 +47,17 @@ export default function App() {
             <FieldTimeOutlined />
             <span>实时话题</span>
             <Link to="/real_time" />
+          </Menu.Item>
+          <Menu.Item key="3">
+            <DotChartOutlined />
+            <span>关键词检索</span>
+            <Link to="/search" />
+          </Menu.Item>
+          <Menu.Item key="4">
+            <HeartOutlined />
+            <span>友情链接</span>
+            { /*eslint-disable-next-line*/ }
+            <a href="https://www.quantacenter.com" target="_blank"/>
           </Menu.Item>
         </Menu>
       </Sider>
