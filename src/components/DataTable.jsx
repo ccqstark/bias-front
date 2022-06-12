@@ -1,84 +1,48 @@
-import { Space, Table, Tag } from 'antd';
+import { Table, Tag } from 'antd';
 import React from 'react';
 
 const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: (text) => <a href='https://www.baidu.com'>{text}</a>,
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size="middle">
-        <a href='https://www.baidu.com'>Invite {record.name}</a>
-        <a href='https://www.baidu.com'>Delete</a>
-      </Space>
-    ),
-  },
-];
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
+    {
+        title: '言论内容',
+        dataIndex: 'comment',
+        key: 'comment',
+    },
+    {
+        title: '标签',
+        dataIndex: 'label',
+        key: 'label',
+        width: 200,
+        render: (_, { label }) => {
+            let color;
+            switch(label) {
+                case "无关":
+                  color = "grey"
+                  break;
+                case "无偏见":
+                  color = "green"
+                  break;
+                case "中立":
+                    color = "blue"
+                    break;
+                case "有偏见":
+                    color = "red"
+                    break;
+                default:
+                    color = "blue"
+              }
+            return (
+                <Tag color={color} key={label}>
+                    {label}
+                </Tag>
+            )
+        },
+    },
 ];
 
-export default function DataTable() {
+export default function DataTable(props) {
     return (
         <div>
-            <Table columns={columns} dataSource={data} />
+            <Table columns={columns} dataSource={props.predictData} />
         </div>
     )
 }

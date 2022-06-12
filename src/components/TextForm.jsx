@@ -1,6 +1,7 @@
 import { Button, Form, Input } from 'antd';
 import React from 'react';
 import './Components.css'
+import axios from 'axios';
 
 const { TextArea } = Input;
 
@@ -20,18 +21,37 @@ const tailLayout = {
 };
 
 class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      topic: "",
+      comments: ""
+    }
+  }
+
   formRef = React.createRef();
-  onFinish = (values) => {
-    console.log(values);
-  };
+
   onReset = () => {
     this.formRef.current.resetFields();
   };
 
+  requestPredict = () => {
+    let data = {
+      "topic": this.state.topic,
+      "comments": this.state.comments.split("\n")
+    };
+    axios.post('/predict', data)
+      .then(res => {
+        // console.log(res.data);
+        this.props.setPredictData(res.data)
+      })
+  }
+
   render() {
     return (
       <div>
-        <Form {...layout} ref={this.formRef} name="input-form" onFinish={this.onFinish}>
+        <Form {...layout} ref={this.formRef} name="input-form">
           <Form.Item
             name="主题"
             label="主题"
@@ -41,7 +61,13 @@ class App extends React.Component {
               },
             ]}
           >
-            <Input placeholder='话题/原文' />
+            <Input placeholder='话题/原文'
+              value={this.state.topic}
+              onChange={(event) => {
+                this.setState({
+                  topic: event.target.value
+                });
+              }} />
           </Form.Item>
           <Form.Item
             name="待检测言论"
@@ -52,10 +78,16 @@ class App extends React.Component {
               },
             ]}
           >
-            <TextArea rows={4} placeholder="每条言论通过换行隔开" />
+            <TextArea rows={4} placeholder="每条言论通过换行隔开"
+              value={this.state.comments}
+              onChange={(event) => {
+                this.setState({
+                  comments: event.target.value
+                });
+              }} />
           </Form.Item>
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" onClick={() => this.requestPredict()}>
               提交数据
             </Button>
             <Button htmlType="button" onClick={this.onReset}
