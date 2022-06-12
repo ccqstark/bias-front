@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/bias/static/css/main.1e1fbdab.css",
+    "main.js": "/bias/static/js/main.93b6217a.js",
+    "index.html": "/bias/index.html",
+    "main.1e1fbdab.css.map": "/bias/static/css/main.1e1fbdab.css.map",
+    "main.93b6217a.js.map": "/bias/static/js/main.93b6217a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1e1fbdab.css",
+    "static/js/main.93b6217a.js"
+  ]
+}

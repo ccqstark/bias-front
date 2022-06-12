@@ -6,7 +6,7 @@ import RealTime from '../pages/RealTime'
 // 定义一个路由
 export default function Router() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/bias/'>
             <Routes>
                 <Route path="/" element={<App />}>
                     <Route path="/direct" element={<Direct />}></Route>
